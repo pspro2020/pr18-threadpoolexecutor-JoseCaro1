@@ -12,11 +12,11 @@ public class MainCached {
         Potencia potencia = null;
         for (int i = 0; i < 10; i++) {
             try {
-                potencia = new Potencia(i, "My Thread " + i);
+                potencia = new Potencia(i);
                 Thread.sleep(200);
                 cachedThreadPool.execute(potencia);
             } catch (RejectedExecutionException e) {
-                System.out.printf("Server -> Task rejected: %s\n", potencia.getName());
+                e.printStackTrace();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

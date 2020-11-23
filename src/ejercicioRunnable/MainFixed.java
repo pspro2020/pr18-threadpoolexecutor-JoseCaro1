@@ -13,11 +13,11 @@ public class MainFixed {
         Potencia potencia = null;
         for (int i = 0; i < 10; i++) {
             try {
-               potencia = new Potencia(i,"My Thread "+i);
-               Thread.sleep(200);
+                potencia = new Potencia(i);
+                Thread.sleep(200);
                 fixedThreadPool.execute(potencia);
             } catch (RejectedExecutionException e) {
-                System.out.printf("Server -> Task rejected: %s\n",potencia.getName());
+                e.printStackTrace();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

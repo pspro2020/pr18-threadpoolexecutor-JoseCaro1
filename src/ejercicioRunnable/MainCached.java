@@ -12,7 +12,7 @@ public class MainCached {
                     Integer count=0;
                     @Override
                     public Thread newThread(Runnable r) {
-                        return new Thread(r,"Potencia "+ ++count);
+                        return new Thread(r,"hilo "+ ++count);
                     }
                 });
 

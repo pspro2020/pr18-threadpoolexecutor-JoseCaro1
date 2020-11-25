@@ -9,13 +9,15 @@ public class MainFixed {
 
     public static void main(String[] args) {
         final ThreadPoolExecutor fixedThreadPool =
-                (ThreadPoolExecutor) Executors.newFixedThreadPool(5,new ThreadFactory() {
+                (ThreadPoolExecutor) Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors(),new ThreadFactory() {
                     Integer count=0;
                     @Override
                     public Thread newThread(Runnable r) {
-                        return new Thread(r,"Hilo "+ ++count);
+                        return new Thread(r,"hilo "+ ++count);
                     }
                 });
+
+
 
         Potencia potencia = null;
         for (int i = 0; i < 10; i++) {

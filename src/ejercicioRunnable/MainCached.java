@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainCached {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         final ThreadPoolExecutor cachedThreadPool =
                 (ThreadPoolExecutor) Executors.newCachedThreadPool(new ThreadFactory() {
                     Integer count=0;
@@ -30,5 +30,10 @@ public class MainCached {
 
         }
         cachedThreadPool.shutdown();
+
+        while(!cachedThreadPool.isTerminated()){
+            Thread.sleep(200);
+        }
+        System.out.printf("El numero maximo de hilos utilizados ha/han sido %d",cachedThreadPool.getLargestPoolSize());
     }
 }

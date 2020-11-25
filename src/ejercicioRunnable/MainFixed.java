@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainFixed {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         final ThreadPoolExecutor fixedThreadPool =
                 (ThreadPoolExecutor) Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors(),new ThreadFactory() {
                     Integer count=0;
@@ -33,6 +33,10 @@ public class MainFixed {
 
         }
         fixedThreadPool.shutdown();
+        while(!fixedThreadPool.isTerminated()){
+            Thread.sleep(200);
+        }
+        System.out.printf("El numero maximo de hilos utilizados ha/han sido %d",fixedThreadPool.getLargestPoolSize());
 
 
     }
